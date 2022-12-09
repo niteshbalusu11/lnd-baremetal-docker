@@ -14,5 +14,5 @@ services:
     stop_grace_period: 5m
 networks:
   default:
-    name: networkName
+    name: baremetal
     external: true
