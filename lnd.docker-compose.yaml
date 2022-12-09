@@ -13,7 +13,7 @@ services:
     command:
         lnd
         --accept-keysend
-        --alias="Yo!"
+        --alias="Yo!" # Set you alias
         --allow-circular-route
         --debuglevel=CNCT=debug,CRTR=debug,HSWC=debug,NTFN=debug,RPCS=debug
         --externalip=123.123.123.123 # Your clearnet IP
@@ -28,7 +28,7 @@ services:
         --bitcoin.node=bitcoind
         --bitcoin.timelockdelta=144
         --bitcoin.defaultchanconfs=2
-        --bitcoind.rpcpass="xxxxx"
+        --bitcoind.rpcpass="xxxxx" # Set bitcoin-core rpc password
         --bitcoind.rpcuser=bitcoinrpc
         --bitcoind.zmqpubrawblock=tcp://bitcoin-core:28332
         --bitcoind.zmqpubrawtx=tcp://bitcoin-core:28333
