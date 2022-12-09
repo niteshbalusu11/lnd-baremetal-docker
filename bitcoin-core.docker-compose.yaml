@@ -30,5 +30,5 @@ services:
       
 networks:
   default:
-    name: networkName
+    name: baremetal
     external: true
