@@ -1,0 +1,46 @@
+version: "3.9"
+services:
+
+# BalanceOfSatoshis
+  bos:
+    image: docker.io/alexbosworth/balanceofsatoshis:latest
+    depends_on: ["bos-init"]
+    cap_add: ["NET_ADMIN"]
+    restart: always
+    volumes:
+      - /path/to/bos/data/dir:/root/.bos
+      - /path/to/lnd/data/dir:/root/lnd:ro
+    entrypoint: ["/bin/sh", "-c" , "sleep infinity"]
+    environment:
+      - BOS_DEFAULT_SAVED_NODE=cur
+      - PATH=${PATH}:/app
+    user: root
+
+# Required for initializing BalanceOfSatoshis
+  bos-init:
+    image: alpine:3.15.0
+    volumes:
+      - /path/to/bos/data/dir:/root/.bos
+    command: /bin/sh -c 'mkdir -p /root/.bos/cur && echo -e "{\"cert_path\":\"/root/lnd/tls.cert\",\"macaroon_path\":\"/root/lnd/data/chain/bitcoin/mainnet/admin.macaroon\",\"socket\":\"lnd:10009\"}" > /root/.bos/cur/credentials.json'
+
+
+# LndBoss
+  lndboss:
+    container_name: lndboss
+    image: docker.io/niteshbalusu/lndboss:root
+    restart: on-failure
+    stop_grace_period: 1m
+    volumes:
+      - /path/to/lndboss/data/dir:/root/.bosgui
+      - /path/to/lnd/data/dir:/root/lnd:ro
+    ports:
+      - "8055:8055"
+    environment:
+      BOS_DATA_PATH: '/home/node/.bosgui'
+      NODE_ENV: 'production'
+      PORT: 8055
+      
+networks:
+  default:
+    name: baremetal
+    external: true
