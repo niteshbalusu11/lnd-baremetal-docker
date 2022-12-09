@@ -1,2 +1,2 @@
-# baremetal-docker
+# lnd-baremetal-docker
 Dockerized Version of Baremetal Noderunning
