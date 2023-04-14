@@ -1,0 +1,26 @@
+version: "3.9"
+services:
+  bitcoin-core:
+    container_name: bitcoin
+    image: docker.io/ruimarinho/bitcoin-core:23.0-alpine
+    restart: unless-stopped
+    volumes:
+        - "~/.bitcoin:/home/bitcoin/.bitcoin"
+    ports:
+      - "127.0.0.1:28332:28332"
+      - "127.0.0.1:28333:28333"
+
+  lnd:
+    container_name: lnd
+    image: docker.io/lightninglabs/lnd:v0.16.0-beta
+    restart: unless-stopped
+    volumes: 
+      - ~/.lnd:/root/.lnd
+    ports:
+      - "9735:9735"
+      - "10009:10009"
+      
+networks:
+  default:
+    name: baremetal
+    external: true
