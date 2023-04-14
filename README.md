@@ -9,7 +9,7 @@ Dockerized Version of Baremetal Noderunning
 
 
 ### Setup local firewall
-```
+```bash
 # Check if UFW is installed
 which ufw
 sudo ufw logging on
@@ -23,7 +23,7 @@ sudo ufw allow 10009
 ```
 
 ### Setup network flood protection
-```
+```bash
 sudo iptables -N syn_flood
 sudo iptables -A INPUT -p tcp --syn -j syn_flood
 sudo iptables -A syn_flood -m limit --limit 1/s --limit-burst 3 -j RETURN
@@ -35,7 +35,7 @@ sudo iptables -A OUTPUT -p icmp -j ACCEPT
 ```
 
 ### Download and use the Bitcoin Core auth script to generate credentials:
-```
+```bash
 wget https://raw.githubusercontent.com/bitcoin/bitcoin/master/share/rpcauth/rpcauth.py
 
 python ./rpcauth.py bitcoinrpc
@@ -47,17 +47,17 @@ python ./rpcauth.py bitcoinrpc
 ## Bitcoin Core
 
 Setup Bitcoin Core Data Directory
-```
+```bash
 mkdir ~/.bitcoin
 ```
 
 Create bitcoin.conf
-```
+```bash
 nano ~/.bitcoin/bitcoin.conf
 ```
 
 Add the following to the bitcoin.conf file
-```
+```ini
 # Set the best block hash here:
 assumevalid=
 
@@ -117,17 +117,17 @@ zmqpubrawtx=tcp://127.0.0.1:28333
 ## Lnd
 
 Setup Lnd Data Directory
-```
+```bash
 mkdir ~/.lnd
 ```
 
 Create lnd.conf
-```
+```bash
 nano ~/.lnd/lnd.conf
 ```
 
 Add the following to the lnd.conf file
-```
+```ini
 [Application Options]
 # Allow push payments
 accept-keysend=1
@@ -259,6 +259,6 @@ routerrpc.apriori.penaltyhalflife=6h0m0s
 ```
 
 ### Create a docker-network
-```
+```bash
 docker network create baremetal
 ```
