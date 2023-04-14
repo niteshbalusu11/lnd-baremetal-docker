@@ -258,6 +258,14 @@ routerrpc.minrtprob=0.005
 routerrpc.apriori.penaltyhalflife=6h0m0s
 ```
 
+Create a wallet password
+```bash
+openssl rand -base64 32 > ~/.lnd/wallet_password
+
+cat ~/.lnd/wallet_password
+# Copy and save this password
+```
+
 ### Create a docker-network
 ```bash
 docker network create baremetal
