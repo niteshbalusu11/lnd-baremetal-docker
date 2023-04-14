@@ -38,7 +38,7 @@ sudo iptables -A OUTPUT -p icmp -j ACCEPT
 ```bash
 wget https://raw.githubusercontent.com/bitcoin/bitcoin/master/share/rpcauth/rpcauth.py
 
-python ./rpcauth.py bitcoinrpc
+python3 ./rpcauth.py bitcoinrpc
 # This will output the authentication string to add to bitcoin.conf
 # Save the password, this will be used for LND configuration
 ```
@@ -63,9 +63,6 @@ assumevalid=
 
 # Run as a daemon mode without an interactive shell
 daemon=1
-
-# Set the data directory to the storage directory
-datadir=/blockchain/.bitcoin/data
 
 # Set the number of megabytes of RAM to use, set to like 50% of available memory
 dbcache=3000
