@@ -289,7 +289,7 @@ git clone https://github.com/niteshbalusu11/lnd-baremetal-docker.git
 cd lnd-baremetal-docker
 
 # Start the containers
-docker-compose up -d
+docker compose up -d
 
 # Add alias for bitcoin-cli
 echo "alias bitcoin-cli='docker exec -it bitcoin-core bitcoin-cli -rpccookiefile=/home/bitcoin/.bitcoin/.cookie'" >> ~/.profile
@@ -318,7 +318,7 @@ cd ~
 cd lnd-baremetal-docker
 
 # Start the containers
-docker-compose -f apps-docker-compose.yml up -d
+docker compose -f apps-docker-compose.yml up -d
 ```
 
 ### Add Alias for BalanceOfSatoshis
