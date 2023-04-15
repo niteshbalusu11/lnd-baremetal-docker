@@ -275,6 +275,9 @@ docker network create baremetal
 docker-compose up -d
 ```
 
+## Apps to control LND:
+
+
 ### Start Bos and Lndboss
 ```bash
 docker-compose -f apps-docker-compose.yml up -d

@@ -33,7 +33,7 @@ services:
     restart: on-failure
     stop_grace_period: 1m
     volumes:
-      - ~/.bos:/root/.bosgui
+      - ~/.bosgui:/root/.bosgui
       - ~/.lnd:/root/lnd:ro
     ports:
       - "8055:8055"
