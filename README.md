@@ -59,10 +59,7 @@ nano ~/.bitcoin/bitcoin.conf
 Add the following to the bitcoin.conf file
 ```ini
 # Set the best block hash here:
-assumevalid=
-
-# Run as a daemon mode without an interactive shell
-daemon=1
+assumevalid=000000000000000000006ebdd4510e32b4efc65a5d54a8e2307778be8f8efdfd
 
 # Set the number of megabytes of RAM to use, set to like 50% of available memory
 dbcache=3000
@@ -90,8 +87,11 @@ peerbloomfilters=0
 # Don't accept deprecated multi-sig style
 permitbaremultisig=0
 
+# Turn on pruned mode
+prune=550
+
 # Set the RPC auth to what was set above
-rpcauth=
+rpcauth=RpcAuth
 
 # Turn on the RPC server
 server=1
@@ -99,15 +99,14 @@ server=1
 # Reduce the log file size on restarts
 shrinkdebuglog=1
 
-# To run a pruned node
-prune=550
-
-# Turn on transaction lookup index (disable if turning on pruned mode)
-txindex=1
-
 # Turn on ZMQ publishing
-zmqpubrawblock=tcp://127.0.0.1:28332
-zmqpubrawtx=tcp://127.0.0.1:28333
+zmqpubrawblock=tcp://0.0.0.0:28332
+zmqpubrawtx=tcp://0.0.0.0:28333
+
+# Rpc server settings
+rpcbind=0.0.0.0
+rpcallowip=0.0.0.0
+rpcport=8332
 ```
 
 
@@ -130,7 +129,7 @@ Add the following to the lnd.conf file
 accept-keysend=1
 
 # Public network name
-alias=YOUR_ALIAS
+alias=Nitesh_is_awesome
 
 # Allow gift routes
 allow-circular-route=1
@@ -145,7 +144,7 @@ coop-close-target-confs=1000
 debuglevel=CNCT=debug,CRTR=debug,HSWC=debug,NTFN=debug,RPCS=debug
 
 # Public P2P IP (remove this if using Tor)
-externalip=INSTANCE_IP
+externalip=174.138.109.159
 
 # Mark unpayable, unpaid invoices as deleted
 gc-canceled-invoices-on-startup=1
@@ -182,11 +181,11 @@ tlsautorefresh=1
 tlsdisableautofill=1
 
 # Add DNS to the RPC TLS certificate
-tlssextraip=YOUR_STATIC_IP_ADDRESS
+tlsextraip=174.138.109.159
 
 # The full path to a file (or pipe/device) that contains the password for unlocking the wallet
 # Add this to the config file after you have created a wallet
-# wallet-unlock-password-file=/home/ubuntu/.lnd/wallet_password
+wallet-unlock-password-file=/root/.lnd/wallet_password
 
 [Bitcoin]
 # Turn on Bitcoin mode
@@ -213,15 +212,18 @@ bitcoin.timelockdelta=144
 [bitcoind]
 # Configuration for using Bitcoin Core backend
 
+# Set the rpc host
+bitcoind.rpchost="bitcoin-core:8332"
+
 # Set the password to what the auth script said
-bitcoind.rpcpass=
+bitcoind.rpcpass=-RPC_PASSWORD
 
 # Set the username
 bitcoind.rpcuser=bitcoinrpc
 
 # Set the ZMQ listeners
-bitcoind.zmqpubrawblock=tcp://bitcoin-core:28332
-bitcoind.zmqpubrawtx=tcp://bitcoin-core:28333
+bitcoind.zmqpubrawblock="tcp://bitcoin-core:28332"
+bitcoind.zmqpubrawtx="tcp://bitcoin-core:28333"
 
 [bolt]
 # Enable database compaction when restarting
