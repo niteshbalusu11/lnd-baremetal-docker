@@ -292,7 +292,7 @@ cd lnd-baremetal-docker
 docker-compose up -d
 
 # Add alias for bitcoin-cli
-echo "alias bitcoin-cli='docker exec -it bitcoin-core  bitcoin-cli -rpccookiefile=/home/bitcoin/.bitcoin/.cookie'" >> ~/.profile
+echo "alias bitcoin-cli='docker exec -it bitcoin-core bitcoin-cli -rpccookiefile=/home/bitcoin/.bitcoin/.cookie'" >> ~/.profile
 
 # Add alias for lncli
 echo "alias lncli='docker exec -it lnd lncli'" >> ~/.profile
