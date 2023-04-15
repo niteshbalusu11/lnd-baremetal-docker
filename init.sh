@@ -59,15 +59,6 @@ sudo iptables -A OUTPUT -p icmp -j ACCEPT
 
 # ====================================================================================================
 
-print_header "Downloading and executing bitcoin auth script, make sure to save the output of this"
-# Download and execute rpcauth.py script
-cd ~
-wget https://raw.githubusercontent.com/bitcoin/bitcoin/master/share/rpcauth/rpcauth.py
-python3 ./rpcauth.py bitcoinrpc
-
-
-# ====================================================================================================
-
 print_header "Creating bitcoin.conf and lnd.conf files inside ~/.bitcoin and ~/.lnd directories"
 
 # Create bitcoin directory and copy configuration file
@@ -77,35 +68,6 @@ cp -n ~/lnd-baremetal-docker/bitcoin.conf ~/.bitcoin/bitcoin.conf
 # Create lnd directory and copy configuration file
 mkdir -p ~/.lnd
 cp -n ~/lnd-baremetal-docker/lnd.conf ~/.lnd/lnd.conf
-
-# ====================================================================================================
-# Generate wallet password
-print_message "Press y to enter a password for LND wallet encryption, or any other key to generate a random password"
-read answer
-if [[ ${answer,,} == "y" ]]
-then
-    while true
-    do
-        print_message "Enter a password for LND wallet encryption:"
-        read -s password
-        print_message "Confirm the password:"
-        read -s password2
-
-        if [[ $password == $password2 ]]
-        then
-            echo $password > ~/.lnd/wallet_password
-            print_message "LND wallet encryption password set"
-            break
-        else
-            print_message "Passwords do not match. Please try again."
-        fi
-    done
-else
-    print_message "Generating LND wallet password"
-    openssl rand -base64 32 > ~/.lnd/wallet_password
-    print_message "Wallet password:"
-    cat ~/.lnd/wallet_password
-fi
 
 # ====================================================================================================
 
@@ -175,3 +137,40 @@ then
 else
     echo "ERROR: Docker installation failed. Please check logs for more information."
 fi
+
+# ====================================================================================================
+# Generate wallet password
+print_message "Press y to enter a password for LND wallet encryption, or any other key to generate a random password"
+read answer
+if [[ ${answer,,} == "y" ]]
+then
+    while true
+    do
+        print_message "Enter a password for LND wallet encryption:"
+        read -s password
+        print_message "Confirm the password:"
+        read -s password2
+
+        if [[ $password == $password2 ]]
+        then
+            echo $password > ~/.lnd/wallet_password
+            print_message "LND wallet encryption password set"
+            break
+        else
+            print_message "Passwords do not match. Please try again."
+        fi
+    done
+else
+    print_message "Generating LND wallet password"
+    openssl rand -base64 32 > ~/.lnd/wallet_password
+    print_message "Wallet password:"
+    cat ~/.lnd/wallet_password
+fi
+
+# ====================================================================================================
+
+print_header "Downloading and executing bitcoin auth script, make sure to save the output of this"
+# Download and execute rpcauth.py script
+cd ~
+wget https://raw.githubusercontent.com/bitcoin/bitcoin/master/share/rpcauth/rpcauth.py
+python3 ./rpcauth.py bitcoinrpc
