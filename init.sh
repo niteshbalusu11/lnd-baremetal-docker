@@ -140,6 +140,7 @@ fi
 
 # ====================================================================================================
 # Generate wallet password
+echo ""
 print_message "Press y to enter a password for LND wallet encryption, or any other key to generate a random password"
 read answer
 if [[ ${answer,,} == "y" ]]
@@ -168,7 +169,7 @@ else
 fi
 
 # ====================================================================================================
-
+echo ""
 print_header "Downloading and executing bitcoin auth script, make sure to save the output of this"
 # Download and execute rpcauth.py script
 cd ~
