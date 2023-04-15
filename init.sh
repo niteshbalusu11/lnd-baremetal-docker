@@ -168,6 +168,10 @@ sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin 
 
 # Verify Docker installation
 print_message "Verifying Docker installation"
-sudo docker run hello-world
-
-print_message "Docker installation completed successfully"
+docker_run_output=$(sudo docker run hello-world 2>&1)
+if [[ "$docker_run_output" == *"Hello from Docker!"* ]]
+then
+    print_message "Docker installation completed successfully"
+else
+    echo "ERROR: Docker installation failed. Please check logs for more information."
+fi
