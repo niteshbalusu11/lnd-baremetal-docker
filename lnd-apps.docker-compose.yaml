@@ -3,13 +3,14 @@ services:
 
 # BalanceOfSatoshis
   bos:
+    container_name: bos
     image: docker.io/alexbosworth/balanceofsatoshis:latest
     depends_on: ["bos-init"]
     cap_add: ["NET_ADMIN"]
     restart: always
     volumes:
-      - /path/to/bos/data/dir:/root/.bos
-      - /path/to/lnd/data/dir:/root/lnd:ro
+      - ~/.bos:/root/.bos
+      - ~/.lnd:/root/lnd:ro
     entrypoint: ["/bin/sh", "-c" , "sleep infinity"]
     environment:
       - BOS_DEFAULT_SAVED_NODE=cur
@@ -18,9 +19,10 @@ services:
 
 # Required for initializing BalanceOfSatoshis
   bos-init:
+    container_name: bos-init
     image: alpine:3.15.0
     volumes:
-      - /path/to/bos/data/dir:/root/.bos
+      - ~/.bos:/root/.bos
     command: /bin/sh -c 'mkdir -p /root/.bos/cur && echo -e "{\"cert_path\":\"/root/lnd/tls.cert\",\"macaroon_path\":\"/root/lnd/data/chain/bitcoin/mainnet/admin.macaroon\",\"socket\":\"lnd:10009\"}" > /root/.bos/cur/credentials.json'
 
 
@@ -31,8 +33,8 @@ services:
     restart: on-failure
     stop_grace_period: 1m
     volumes:
-      - /path/to/lndboss/data/dir:/root/.bosgui
-      - /path/to/lnd/data/dir:/root/lnd:ro
+      - ~/.bos:/root/.bosgui
+      - ~/.lnd:/root/lnd:ro
     ports:
       - "8055:8055"
     environment:
