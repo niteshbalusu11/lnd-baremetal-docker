@@ -269,3 +269,20 @@ cat ~/.lnd/wallet_password
 ```bash
 docker network create baremetal
 ```
+
+### Start Bitcoin Core and LND
+```bash
+docker-compose up -d
+```
+
+### Start Bos and Lndboss
+```bash
+docker-compose -f apps-docker-compose.yml up -d
+```
+
+### Add Alias for BalanceOfSatoshis
+```bash
+echo "alias bos='docker exec -it bos bos peers'" >> ~/.profile
+
+source ~/.profile
+```
