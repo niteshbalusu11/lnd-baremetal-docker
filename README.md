@@ -91,7 +91,7 @@ peerbloomfilters=0
 # Don't accept deprecated multi-sig style
 permitbaremultisig=0
 
-# Turn on pruned mode
+# Turn on pruned mode (remove this if you want to run a full node)
 prune=550
 
 # Set the RPC auth to what was set above
@@ -102,6 +102,9 @@ server=1
 
 # Reduce the log file size on restarts
 shrinkdebuglog=1
+
+# Turn on transaction lookup index (turn off pruned mode if this is enabled)
+txindex=1
 
 # Turn on ZMQ publishing
 zmqpubrawblock=tcp://0.0.0.0:28332
