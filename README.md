@@ -5,6 +5,42 @@ Dockerized Version of Baremetal Noderunning
 An Ubuntu 20.04 or higher server with at least 4GB of RAM and 50GB of disk space.
 This can be deployed in cloud like AWS or on a local machine like a Raspberry Pi 4.
 
+## Quick Setup (Absolutely Not Recommended)
+Ideally use the manual setup below. This is only for those who want to get started quickly and don't care about security.
+
+```bash
+# Clone the repo
+git clone https://github.com/niteshbalusu11/lnd-baremetal-docker.git
+
+# Change directory
+cd lnd-baremetal-docker
+
+# Run the init script (Atleast read the script before running it)
+sudo bash init.sh
+
+# After the script is done, edit ~/.bitcoin/bitcoin.conf and add the rpcauth string from the output of the script
+nano ~/.bitcoin/bitcoin.conf
+
+To save and exit nano, press Ctrl+X, type Y and then press Enter
+
+# After the script is done, edit ~/.lnd/lnd.conf and add the bitcoind.rpcpass string from the output of the script
+# In the bitcoind section
+nano ~/.lnd/lnd.conf
+
+To save and exit nano, press Ctrl+X, type Y and then press Enter
+
+# Start the containers
+docker compose up -d
+
+# Start the apps (Optional)
+docker compose -f apps-docker-compose.yml up -d
+
+# To check logs for Bitcoin Core and LND
+docker logs -f bitcoin-core
+docker logs -f lnd
+```
+
+## Manual Setup (Recommended)
 ### Install docker
 [Install Docker](https://docs.docker.com/engine/install/)
 
