@@ -7,9 +7,9 @@ services:
     volumes:
         - "~/.bitcoin:/home/bitcoin/.bitcoin"
     ports:
-      - "28332:28332"
-      - "28333:28333"
-      - "8332:8332"
+      - "127.0.0.1:28332:28332"
+      - "127.0.0.1:28333:28333"
+      - "127.0.0.1:8332:8332"
 
 
   lnd:
@@ -27,4 +27,4 @@ networks:
   default:
     name: baremetal
     external: true
-
+    
