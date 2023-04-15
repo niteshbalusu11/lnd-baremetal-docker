@@ -280,6 +280,15 @@ docker network create baremetal
 ### Start Bitcoin Core and LND
 ```bash
 docker-compose up -d
+
+# Add alias for bitcoin-cli
+echo "alias bitcoin-cli='docker exec -it bitcoin-core  bitcoin-cli -rpccookiefile=/home/bitcoin/.bitcoin/.cookie'" >> ~/.profile
+
+# Add alias for lncli
+echo "alias lncli='docker exec -it lnd lncli'" >> ~/.profile
+
+# Execute the profile
+source ~/.profile
 ```
 
 ## Apps to control LND:
@@ -294,5 +303,6 @@ docker-compose -f apps-docker-compose.yml up -d
 ```bash
 echo "alias bos='docker exec -it bos bos peers'" >> ~/.profile
 
+# Execute the profile
 source ~/.profile
 ```
