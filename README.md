@@ -1,6 +1,10 @@
 # lnd-baremetal-docker
 Dockerized Version of Baremetal Noderunning
 
+## Pre-requisites
+An Ubuntu 20.04 or higher server with at least 4GB of RAM and 50GB of disk space.
+This can be deployed in cloud like AWS or on a local machine like a Raspberry Pi 4.
+
 ### Install docker
 [Install Docker](https://docs.docker.com/engine/install/)
 
