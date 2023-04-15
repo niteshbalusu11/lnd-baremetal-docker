@@ -299,6 +299,11 @@ echo "alias lncli='docker exec -it lnd lncli'" >> ~/.profile
 
 # Execute the profile
 source ~/.profile
+
+# Create a wallet
+lncli create
+
+# Enter the wallet password from above and save the seed securely
 ```
 
 ## Apps to control LND:
