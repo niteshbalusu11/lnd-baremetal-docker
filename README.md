@@ -59,7 +59,7 @@ nano ~/.bitcoin/bitcoin.conf
 Add the following to the bitcoin.conf file
 ```ini
 # Set the best block hash here:
-assumevalid=000000000000000000006ebdd4510e32b4efc65a5d54a8e2307778be8f8efdfd
+assumevalid=
 
 # Set the number of megabytes of RAM to use, set to like 50% of available memory
 dbcache=3000
@@ -91,7 +91,7 @@ permitbaremultisig=0
 prune=550
 
 # Set the RPC auth to what was set above
-rpcauth=RpcAuth
+rpcauth=
 
 # Turn on the RPC server
 server=1
@@ -105,7 +105,7 @@ zmqpubrawtx=tcp://0.0.0.0:28333
 
 # Rpc server settings
 rpcbind=0.0.0.0
-rpcallowip=0.0.0.0
+rpcallowip=0.0.0.0/0
 rpcport=8332
 ```
 
@@ -144,7 +144,7 @@ coop-close-target-confs=1000
 debuglevel=CNCT=debug,CRTR=debug,HSWC=debug,NTFN=debug,RPCS=debug
 
 # Public P2P IP (remove this if using Tor)
-externalip=174.138.109.159
+externalip=EXTERNAL_IP
 
 # Mark unpayable, unpaid invoices as deleted
 gc-canceled-invoices-on-startup=1
@@ -181,7 +181,7 @@ tlsautorefresh=1
 tlsdisableautofill=1
 
 # Add DNS to the RPC TLS certificate
-tlsextraip=174.138.109.159
+tlsextraip=EXTERNAL_IP
 
 # The full path to a file (or pipe/device) that contains the password for unlocking the wallet
 # Add this to the config file after you have created a wallet
@@ -216,7 +216,7 @@ bitcoin.timelockdelta=144
 bitcoind.rpchost="bitcoin-core:8332"
 
 # Set the password to what the auth script said
-bitcoind.rpcpass=-RPC_PASSWORD
+bitcoind.rpcpass=
 
 # Set the username
 bitcoind.rpcuser=bitcoinrpc
