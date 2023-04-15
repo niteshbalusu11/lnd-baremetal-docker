@@ -279,6 +279,16 @@ docker network create baremetal
 
 ### Start Bitcoin Core and LND
 ```bash
+# Go to the home directory
+cd ~
+
+# Clone the repo
+git clone https://github.com/niteshbalusu11/lnd-baremetal-docker.git
+
+# Change directory
+cd lnd-baremetal-docker
+
+# Start the containers
 docker-compose up -d
 
 # Add alias for bitcoin-cli
@@ -296,6 +306,13 @@ source ~/.profile
 
 ### Start Bos and Lndboss
 ```bash
+# Go to the home directory
+cd ~
+
+# Change directory
+cd lnd-baremetal-docker
+
+# Start the containers
 docker-compose -f apps-docker-compose.yml up -d
 ```
 
@@ -305,4 +322,14 @@ echo "alias bos='docker exec -it bos bos peers'" >> ~/.profile
 
 # Execute the profile
 source ~/.profile
+```
+
+
+### To view Logs
+```bash
+# Bitcoin core logs
+docker logs -f bitcoin-core
+
+# LND logs
+docker logs -f lnd
 ```
