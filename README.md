@@ -136,7 +136,7 @@ Add the following to the lnd.conf file
 accept-keysend=1
 
 # Public network name
-alias=Nitesh_is_awesome
+alias=YourNodeName
 
 # Allow gift routes
 allow-circular-route=1
