@@ -70,14 +70,6 @@ mkdir -p ~/.lnd
 cp -n ~/lnd-baremetal-docker/lnd.conf ~/.lnd/lnd.conf
 
 # ====================================================================================================
-
-# Create Docker network
-print_header "Setting up Docker network"
-print_message "Creating Docker network"
-docker network create baremetal
-
-
-# ====================================================================================================
 # Add alias for bitcoin-cli
 print_header "Configuring aliases"
 print_message "Adding alias for bitcoin-cli"
@@ -88,7 +80,7 @@ print_message "Adding alias for lncli"
 echo "alias lncli='docker exec -it lnd lncli'" >> ~/.profile
 
 # Add alias for bos
-echo "alias bos='docker exec -it bos bos peers'" >> ~/.profile
+echo "alias bos='docker exec -it bos bos'" >> ~/.profile
 
 # Execute the profile
 print_message "Executing the profile"
@@ -137,6 +129,13 @@ then
 else
     echo "ERROR: Docker installation failed. Please check logs for more information."
 fi
+
+# ====================================================================================================
+
+# Create Docker network
+print_header "Setting up Docker network"
+print_message "Creating Docker network"
+docker network create baremetal
 
 # ====================================================================================================
 # Generate wallet password
