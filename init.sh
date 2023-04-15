@@ -131,3 +131,36 @@ echo "alias bos='docker exec -it bos bos peers'" >> ~/.profile
 # Execute the profile
 print_message "Executing the profile"
 source ~/.profile
+
+# ====================================================================================================
+# Install Docker
+print_header "Installing Docker"
+
+# Remove existing Docker installations
+print_message "Removing existing Docker installations"
+sudo apt-get remove docker docker-engine docker.io containerd runc
+
+# Install dependencies
+print_message "Installing dependencies"
+sudo apt-get update
+sudo apt-get install -y \
+    ca-certificates \
+    curl \
+    gnupg
+
+# Install Docker GPG key
+print_message "Installing Docker GPG key"
+sudo install -m 0755 -d /etc/apt/keyrings
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+sudo chmod a+r /etc/apt/keyrings
+
+# Install Docker
+print_message "Installing Docker"
+sudo apt-get update
+sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+
+# Verify Docker installation
+print_message "Verifying Docker installation"
+sudo docker run hello-world
+
+print_message "Docker installation completed successfully"
